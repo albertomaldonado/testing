@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Web services -->
+	<!-- Payments Telebanking -->
+	<bean id="paymentTbkWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.PaymentTbkWebServicesImpl">
+		<property name="paymentTbkServices" ref="paymentTbkServices" />
+	</bean>
+	<!-- Solicitud Crediticia -->
+	<bean id="creditApplicationWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.CreditApplicationWebServicesImpl">
+		<property name="creditApplicationServices" ref="creditApplicationServices" />
+	</bean>
+	<!-- cheques de gerencia -->
+	<bean id="managementChecksWebServiceImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.ManagementChecksWebServiceImpl">
+		<property name="managementService" ref="managementService" />
+	</bean>
+	<!-- General Balances -->
+	<bean id="generalBalancesWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalancesWebServicesImpl">
+		<property name="generalBalancesService" ref="generalBalancesService" />
+	</bean>
+	<!-- Pagos del/al exterior -->
+	<bean id="paymentToFromAbroadWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.PaymentToFromAbroadWebServicesImpl">
+		<property name="paymentToFromAbroadServices" ref="paymentToFromAbroadServices" />
+	</bean>
+	<!-- General Balance Inquiry Details -->
+	<bean id="generalBalanceInquiryDetailsWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalanceInquiryDetailsWebServicesImpl">
+		<property name="generalBalanceInquiryDetailsServices" ref="generalBalanceInquiryDetailsServices" />
+	</bean>
+	<!-- Notes And Constancy -->
+	<bean id="notesAndConstancyWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.NotesAndConstancyWebServicesImpl">
+		<property name="notesAndConstancyServices" ref="notesAndConstancyServices" />
+	</bean>
+	<!-- ExcelReport -->
+	<bean id="inquiryReportWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.InquiryReportWebServicesImpl">
+		<property name="inquiryReportServices" ref="inquiryReportServices" />
+	</bean>
+	<!-- General Balance Inquiry Details Report -->
+	<bean id="generalBalanceInquiryDetailsReportWebServicesImpl"
+		class="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalanceInquiryDetailsReportWebServicesImpl">
+		<property name="generalBalanceInquiryDetailReportServices" ref="generalBalanceInquiryDetailReportServices" />
+	</bean>
+	
+	<!-- services -->
+	
+	<bean id="ftpService" class="pe.com.scotiabank.tbk.util.service.FTPCredentialsService">
+		<property name="connectAS400" ref="connectAS400" />
+	</bean>
+	
+	<bean id="paymentTbkServices"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.PaymentTbkServicesImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	
+	<bean id="creditApplicationServices" class="pe.com.scotiabank.tbk.consultas.services.impl.CreditApplicationServicesImpl">
+		<property name="sbpFalconServiceClient" ref="sbpFalconServiceClient" /> 
+	</bean>
+	<bean id="managementService"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.ManagementChecksServiceImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	<bean id="generalBalancesService"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.GeneralBalancesServiceImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	<bean id="paymentToFromAbroadServices"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.PaymentToFromAbroadServicesImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	<bean id="generalBalanceInquiryDetailsServices"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.GeneralBalanceInquiryDetailsServicesImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	<bean id="notesAndConstancyServices"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.NotesAndConstancyServicesImpl">
+		<property name="connectAS400" ref="connectAS400" />
+		<property name="ftpExtractor" ref="ftpExtractor" />
+	</bean>
+	<bean id="inquiryReportServices"
+		class="pe.com.scotiabank.tbk.consultas.services.impl.InquiryReportServicesImpl">
+		<property name="creditApplicationServices" ref="creditApplicationServices"></property>
+		<property name="paymentTbkServices" ref="paymentTbkServices"></property>
+		<property name="notesAndConstancyServices" ref="notesAndConstancyServices"></property>
+		<property name="managementService" ref="managementService"></property>
+	</bean>
+	<bean id="generalBalanceInquiryDetailReportServices" class="pe.com.scotiabank.tbk.consultas.services.impl.GeneralBalanceInquiryDetailReportServiceImpl">
+		<property name="generalBalanceInquiryDetailsServices" ref="generalBalanceInquiryDetailsServices"></property>
+	</bean>
+
+	<!-- WS Template -->
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="packagesToScan">
+			<list>
+				<value>services.bannego.tbk.*</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="marshaller" ref="marshaller"/>
+        <property name="unmarshaller" ref="marshaller"/>
+        <property name="messageSender">
+        	<bean class="org.springframework.ws.transport.http.HttpComponentsMessageSender"/>
+		</property>
+    </bean>
+	
+	<!-- WS Clients Config -->
+	<bean id="sbpFalconWSClientConfig" class="pe.com.scotiabank.tbk.consultas.services.external.SbpFalconWSClientConfig">
+		<property name="template" ref="webServiceTemplate" />
+		<property name="uri" value="http://wsvirtual:8096/WS_TBK_FAL/SolicitudTBK.asmx" />
+	</bean>
+
+	<!-- WS Clients -->
+	<bean id="sbpFalconServiceClient" class="pe.com.scotiabank.tbk.consultas.services.external.SBPFalconServiceClient">
+		<property name="sbpFalconWSClientConfig" ref="sbpFalconWSClientConfig" />
+	</bean>
+
+
+	<!-- DAO beans -->
+	<bean id="connectAS400" class="pe.com.scotiabank.tbk.util.dao.ConnectAS400" destroy-method="destroy"/>
+	
+	<bean id="ftpExtractor" class ="pe.com.scotiabank.tbk.util.ftp.FTPExtractor">
+		<property name="ftpService" ref="ftpService" />
+	</bean>
+
+	<!-- SOAP Handlers -->
+	<bean id="soapHandler" class="pe.com.scotiabank.tbk.util.handlers.SessionTokenHandler" />
+	
+	<mvc:annotation-driven />
+    <context:component-scan base-package="pe.com.scotiabank.tbk.consultas.controller" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>

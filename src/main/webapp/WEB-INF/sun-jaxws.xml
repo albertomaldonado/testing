@@ -1,0 +1,40 @@
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	version="2.0">
+
+	<endpoint name="PaymentTbkWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.PaymentTbkWebServicesImpl"
+		url-pattern="/PaymentTbkServices" />
+
+	<endpoint name="CreditApplicationWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.CreditApplicationWebServicesImpl"
+		url-pattern="/CreditApplicationServices" />
+
+	<endpoint name="ManagementChecksWebServiceImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.ManagementChecksWebServiceImpl"
+		url-pattern="/ManagementServices" />
+
+	<endpoint name="GeneralBalancesWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalancesWebServicesImpl"
+		url-pattern="/GeneralBalancesServices" />
+
+	<endpoint name="PaymentToFromAbroadWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.PaymentToFromAbroadWebServicesImpl"
+		url-pattern="/PaymentToFromAbroadServices" />
+
+	<endpoint name="GeneralBalanceInquiryDetailsWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalanceInquiryDetailsWebServicesImpl"
+		url-pattern="/GeneralBalanceInquiryDetailsServices" />
+	
+	<endpoint name="NotesAndConstancyWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.NotesAndConstancyWebServicesImpl"
+		url-pattern="/NotesAndConstancyServices" />
+		
+	<endpoint name="InquiryReportWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.InquiryReportWebServicesImpl"
+		url-pattern="/InquiryReportServices" />
+		
+	<endpoint name="GeneralBalanceInquiryDetailsReportWebServicesImpl"
+		implementation="pe.com.scotiabank.tbk.consultas.webservices.impl.GeneralBalanceInquiryDetailsReportWebServicesImpl"
+		url-pattern="/GeneralBalanceInquiryDetailReportServices" />
+		
+</endpoints>
