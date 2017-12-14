@@ -8,7 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import pe.com.develop.enums.ProcessEnum;
 import pe.com.develop.enums.StateEnum;
@@ -18,8 +19,8 @@ import pe.com.develop.util.ReadPropertie;
 public class JobLoggerRefactory 
 {
 
-	private static Logger logger;
-
+	final static Logger logger = Logger.getLogger(JobLoggerRefactory.class);
+	
 	public boolean LogMessage(String messageText, int process, int state) 
 	{
 		boolean response = false;
@@ -32,6 +33,10 @@ public class JobLoggerRefactory
 				response = insertFile(messageText, indicator);			
 			}
 	
+			if (ProcessEnum.CONSOLE.getValue()==process) 
+			{
+				response = insertConsole(messageText, indicator);			
+			}
 			if (ProcessEnum.DATABASE.getValue()==process)
 			{
 				response = insertDataBase(messageText, indicator);
@@ -53,6 +58,7 @@ public class JobLoggerRefactory
 		ReadPropertie read = ReadPropertie.getInstance();
 		String fileName = read.getValue("nombreArchivo");
 		File file = new File(fileName);
+		
 		if(file.exists())
 		{
 			response = writeFile(message, fileName, t);
@@ -64,6 +70,26 @@ public class JobLoggerRefactory
 				response = writeFile(message, fileName, t);
 			} 
 		}
+		
+		return response;
+	}
+	
+	/**
+	 * Insert in console
+	 * */
+	public boolean insertConsole(String message, int t)
+	{
+		boolean response = false;
+		try
+		{
+			response = true;
+			logger.debug(message);
+		}
+		catch(Exception e)
+		{
+			logger.error(e.getMessage());
+		}
+		
 		return response;
 	}
 	
@@ -97,25 +123,26 @@ public class JobLoggerRefactory
 			prepared.executeUpdate();
 			
 			response = true;
+			connection.close();
 		}
 		return response;
 	}
 
 	public void getInformationDataBase() 
 	{
-		System.out.println("lectura de bd");
 		try(Connection connection = ConnectionDB.getInstance().getConnection()) 
 		{
 			PreparedStatement statement = connection.prepareStatement("select id, mensaje, estado from LOG_VALUES");
 			ResultSet result = statement.executeQuery();
 			while(result.next())
 			{
-				System.out.println(result.getInt(1) + " " +result.getString(2) + " "+result.getString(3));
+				logger.info(result.getInt(1) + " " +result.getString(2) + " "+result.getString(3));
 			}
+			connection.close();
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	

@@ -2,6 +2,9 @@ package pe.com.test.refactory;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 import pe.com.develop.enums.ProcessEnum;
@@ -15,17 +18,25 @@ public class TestRefactory {
 	@Test
 	public void testSaveDataBase() 
 	{
-		
-		boolean response = refactory.LogMessage("prueba de insersion", ProcessEnum.DATABASE.getValue(), StateEnum.WARNING.getValue());
+		String message = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " prueba";
+		boolean response = refactory.LogMessage(message, ProcessEnum.DATABASE.getValue(), StateEnum.WARNING.getValue());
 		assertEquals(Boolean.TRUE, response);
 	}
-
 	
+	@Test
+	public void testConsoleFile()
+	{
+		String message = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " prueba";
+		boolean response = refactory.LogMessage(message, ProcessEnum.CONSOLE.getValue(), StateEnum.WARNING.getValue());
+		assertEquals(Boolean.TRUE, response);
+
+	}
 	
 	@Test
 	public void testSaveFile()
 	{
-		boolean response = refactory.LogMessage("prueba de registro", ProcessEnum.FILE.getValue(), StateEnum.WARNING.getValue());
+		String message = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " prueba";
+		boolean response = refactory.LogMessage(message, ProcessEnum.FILE.getValue(), StateEnum.WARNING.getValue());
 		assertEquals(Boolean.TRUE, response);
 
 	}
