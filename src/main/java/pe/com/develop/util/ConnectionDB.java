@@ -1,18 +1,14 @@
-package pe.com.abc.connection;
+package pe.com.develop.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.Map;
 import java.util.Properties;
-
-import pe.com.abc.config.ReadPropertie;
 
 public class ConnectionDB {
 
 	private static Connection connection = null;
 
-	public static Connection getConnection(Map dbParams) 
+	public static Connection getConnection() 
 	{
 		ReadPropertie read = ReadPropertie.getInstance();
 		try 
