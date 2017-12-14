@@ -2,25 +2,29 @@ package pe.com.develop.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
 
 public class ConnectionDB {
 
 	private static Connection connection = null;
-
-	public static Connection getConnection() 
+	private static ConnectionDB instanceDB;
+	
+	public static ConnectionDB getInstance()
+	{
+	    if(instanceDB == null)
+	    {
+	    	instanceDB = new ConnectionDB();
+	    }
+	    return instanceDB;
+	}
+	
+	public Connection getConnection() 
 	{
 		ReadPropertie read = ReadPropertie.getInstance();
 		try 
 		{
 			if (connection == null) 
 			{
-
-				Properties connectionProps = new Properties();
-				connectionProps.put("user", read.getValue("usuario"));
-				connectionProps.put("password", read.getValue("clave"));
-				
-				connection = DriverManager.getConnection("jdbc:derby://localhost:1527/testDb", connectionProps);
+				connection = DriverManager.getConnection("jdbc:h2:file:./test", read.getValue("usuario"), read.getValue("clave"));
 			}
 		} 
 		catch (Exception e) 

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
@@ -18,7 +19,6 @@ public class JobLoggerRefactory
 {
 
 	private static Logger logger;
-	
 
 	public boolean LogMessage(String messageText, int process, int state) 
 	{
@@ -39,7 +39,7 @@ public class JobLoggerRefactory
 		}
 		catch(Exception e) 
 		{
-			
+			System.out.println(e.getMessage());
 		}
 		return response;
 	}
@@ -72,7 +72,7 @@ public class JobLoggerRefactory
 		boolean response = true;
 		try(BufferedWriter buffer = new BufferedWriter(new FileWriter(fileName, true)))
 		{
-			buffer.write(message + " "+String.valueOf(i)+"\n");
+			buffer.write(message + " "+ String.valueOf(i) +"\n");
 		}
 		catch(IOException e)
 		{
@@ -87,17 +87,36 @@ public class JobLoggerRefactory
 	private boolean insertDataBase(String message, int t) throws SQLException
 	{
 		boolean response = false;
-		try(Connection connection = ConnectionDB.getConnection()) 
+		try(Connection connection = ConnectionDB.getInstance().getConnection()) 
 		{
-			PreparedStatement stmt = null;
+			PreparedStatement prepared = null;
 			
-			stmt = connection.prepareStatement("INSERT INTO Log_Values values (?, ?)");
-			stmt.setString(1, message);
-			stmt.setString(2, String.valueOf(t));
-			stmt.executeUpdate();
+			prepared = connection.prepareStatement("INSERT INTO Log_Values (mensaje, estado) values (?, ?)");
+			prepared.setString(1, message);
+			prepared.setString(2, String.valueOf(t));
+			prepared.executeUpdate();
+			
 			response = true;
 		}
 		return response;
+	}
+
+	public void getInformationDataBase() 
+	{
+		System.out.println("lectura de bd");
+		try(Connection connection = ConnectionDB.getInstance().getConnection()) 
+		{
+			PreparedStatement statement = connection.prepareStatement("select id, mensaje, estado from LOG_VALUES");
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				System.out.println(result.getInt(1) + " " +result.getString(2) + " "+result.getString(3));
+			}
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	private static int getStateMessage(int state)

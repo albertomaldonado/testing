@@ -1,0 +1,73 @@
+12-14 02:21:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:23:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:23:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:24:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:24:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:28:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:29:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:30:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Valor Invalido "0" para el parametro "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:227)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3165)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3193)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:322)
+	at pe.com.develop.refactory.JobLoggerRefactory.getInformationDataBase(JobLoggerRefactory.java:117)
+	at pe.com.develop.refactory.JobLoggerRefactory.main(JobLoggerRefactory.java:106)
+12-14 02:31:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Valor Invalido "0" para el parametro "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:227)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3165)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3193)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:322)
+	at pe.com.develop.refactory.JobLoggerRefactory.getInformationDataBase(JobLoggerRefactory.java:117)
+	at pe.com.develop.refactory.JobLoggerRefactory.main(JobLoggerRefactory.java:106)
+12-14 02:32:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:34:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:36:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:38:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:38:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:39:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:40:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:41:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:42:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
+12-14 02:49:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: El objeto ya está cerrado
+The object is already closed [90007-176]
