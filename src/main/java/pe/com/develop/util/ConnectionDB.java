@@ -24,7 +24,7 @@ public class ConnectionDB {
 		{
 			if (connection == null) 
 			{
-				connection = DriverManager.getConnection("jdbc:h2:file:./test", read.getValue("usuario"), read.getValue("clave"));
+				connection = DriverManager.getConnection(Constantes.CONNECTION_H2, read.getValue(Constantes.CONNECTION_USER), read.getValue(Constantes.CONNECTION_PASSWORD));
 			}
 		} 
 		catch (Exception e) 

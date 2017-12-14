@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import pe.com.develop.enums.ProcessEnum;
 import pe.com.develop.enums.StateEnum;
 import pe.com.develop.util.ConnectionDB;
+import pe.com.develop.util.Constantes;
 import pe.com.develop.util.ReadPropertie;
 
 public class JobLoggerRefactory 
@@ -56,7 +57,7 @@ public class JobLoggerRefactory
 	{
 		boolean response = false;
 		ReadPropertie read = ReadPropertie.getInstance();
-		String fileName = read.getValue("nombreArchivo");
+		String fileName = read.getValue(Constantes.FILE_NAME);
 		File file = new File(fileName);
 		
 		if(file.exists())
@@ -117,7 +118,7 @@ public class JobLoggerRefactory
 		{
 			PreparedStatement prepared = null;
 			
-			prepared = connection.prepareStatement("INSERT INTO Log_Values (mensaje, estado) values (?, ?)");
+			prepared = connection.prepareStatement(Constantes.SQL_INSERT);
 			prepared.setString(1, message);
 			prepared.setString(2, String.valueOf(t));
 			prepared.executeUpdate();
@@ -132,7 +133,7 @@ public class JobLoggerRefactory
 	{
 		try(Connection connection = ConnectionDB.getInstance().getConnection()) 
 		{
-			PreparedStatement statement = connection.prepareStatement("select id, mensaje, estado from LOG_VALUES");
+			PreparedStatement statement = connection.prepareStatement(Constantes.SQL_SELECT);
 			ResultSet result = statement.executeQuery();
 			while(result.next())
 			{

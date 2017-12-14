@@ -9,24 +9,27 @@ public class ReadPropertie
 	private static ReadPropertie instance = null;
 	private Properties properties;
 
-	protected ReadPropertie() throws IOException {
-
+	protected ReadPropertie() throws IOException 
+	{
 		properties = new Properties();
 		InputStream input = null;
 		
-		String filename = "config.properties";
+		String filename = Constantes.CONFIG_PROPERTIES;
 		input = ReadPropertie.class.getClassLoader().getResourceAsStream(filename);
 		properties.load(input);
 	}
 
 	public static ReadPropertie getInstance() 
 	{
-		if (instance == null) {
+		if (instance == null) 
+		{
 			try 
 			{
 				instance = new ReadPropertie();
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
+			} 
+			catch (IOException io) 
+			{
+				io.printStackTrace();
 			}
 		}
 		return instance;
