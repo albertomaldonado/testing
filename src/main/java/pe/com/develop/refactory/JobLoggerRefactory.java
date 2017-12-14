@@ -44,7 +44,7 @@ public class JobLoggerRefactory
 		}
 		catch(Exception e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return response;
 	}
